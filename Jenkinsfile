@@ -9,6 +9,14 @@ pipeline {
                     ls -lah
                 '''
             }
+          stage('Deploy App')
+            {
+                kubernetesDeploy(configs: "helloworld.yml", kubeconfigId: "News-Kubeconfig")    
+            }
+          stage('Deploy Service')
+            {
+                kubernetesDeploy(configs: "helloworld-service.yml", kubeconfigId: "News-Kubeconfig")    
+            }
         }
     }
 }

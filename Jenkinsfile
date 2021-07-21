@@ -2,7 +2,9 @@ pipeline {
     agent any
     stages {
         stage('Initialization') {
-            sh 'echo "hello Kubectl" '
+            steps{
+               sh 'echo "hello Kubectl" '
+            }
         }
          stage('Deploy App')
             {

@@ -2,19 +2,13 @@ pipeline {
     agent any
     stages {
         stage('Initialization') {
-            steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
-            }
+            sh 'echo "hello Kubectl" '
         }
-          stage('Deploy App')
+         stage('Deploy App')
             {
                 kubernetesDeploy(configs: "helloworld.yml", kubeconfigId: "News-Kubeconfig")    
             }
-          stage('Deploy Service')
+         stage('Deploy Service')
             {
                 kubernetesDeploy(configs: "helloworld-service.yml", kubeconfigId: "News-Kubeconfig")    
             }

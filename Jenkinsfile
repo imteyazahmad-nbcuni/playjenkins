@@ -6,12 +6,19 @@ pipeline {
         }
          stage('Deploy App')
             {
-                kubernetesDeploy(configs: "helloworld.yml", kubeconfigId: "News-Kubeconfig")    
+                steps {
+                    script{
+                          kubernetesDeploy(configs: "helloworld.yml", kubeconfigId: "News-Kubeconfig")
+                    }
+                }
             }
          stage('Deploy Service')
             {
-                kubernetesDeploy(configs: "helloworld-service.yml", kubeconfigId: "News-Kubeconfig")    
-            }
-        
+                steps{
+                    script{
+                     kubernetesDeploy(configs: "helloworld-service.yml", kubeconfigId: "News-Kubeconfig")
+                    }
+                }
+            }        
     }
 }

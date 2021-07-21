@@ -10,9 +10,17 @@ pipeline {
             {
                 steps {
                     script{
-                          kubernetesDeploy(configs: "nginx-deployment.yaml", kubeconfigId: "News-Kubeconfig")
+                          kubernetesDeploy(configs: "helloworld.yml", kubeconfigId: "News-Kubeconfig")
                     }
                 }
             }        
+           stage('Deploy Service')
+            {
+                steps {
+                    script{
+                          kubernetesDeploy(configs: "helloworld-service.yml", kubeconfigId: "News-Kubeconfig")
+                    }
+                }
+            }
     }
 }
